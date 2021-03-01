@@ -97,7 +97,7 @@ def edit():
             web_settings["hotkey1"].append([int(editdict["hotkey1_angle_edit"]),editdict["hotkey1_text_edit"]])
             web_settings["hotkey2"].append([int(editdict["hotkey2_angle_edit"]),editdict["hotkey2_text_edit"]])
         '''
-    with open('static/webinterface_settings.json', 'w') as f:
+    with open('/home/pi/servo_demo/static/webinterface_settings.json', 'w') as f:
         json.dump(web_settings, f)        
     return flask.redirect((flask.url_for('index')))
 
@@ -122,4 +122,4 @@ def documentation():
     return auto.html('public', title='ServoControl Routing Table')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port="10086")
+    app.run(host="0.0.0.0",debug=1,port="10086")

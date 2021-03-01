@@ -5,7 +5,7 @@ import time
 
 class servo_switch(PCA9685):  #舵机直接设角度 （180度伺服）
     
-    def __init__(self, address, debug):
+    def __init__(self, address=0x40, debug=False):
         super().__init__(address=address, debug=debug)
         self.setPWMFreq(50)
 
@@ -23,7 +23,7 @@ class servo_switch(PCA9685):  #舵机直接设角度 （180度伺服）
 
 class servo_360(PCA9685): #360°电机
     
-    def __init__(self, address, debug):
+    def __init__(self, address=0x40, debug=False):
         super().__init__(address=address, debug=debug)
         self.setPWMFreq(50)
 
