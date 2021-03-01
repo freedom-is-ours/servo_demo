@@ -75,7 +75,10 @@
         {% endif %}
       {% endfor %}
       <form action="{{url_for('editjson')}}">
-      <button type="submit">edit</button>
+        <button type="submit">edit</button>
+      </form>
+      <form action="{{url_for('documentation')}}">
+        <button type="submit">doc</button>
       </form>
     <!--结束-->
     </div>
