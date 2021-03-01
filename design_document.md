@@ -68,4 +68,5 @@ dict = {"channal": num[i] ,  # <!--通道号，整型列表，默认0-7-->
 
 ---
 
-2.24 差了实现显示角度
+安装----github下载解压到目录/home/pi   终端打开该文件夹 
+>> sudo sh install.sh
