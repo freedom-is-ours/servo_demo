@@ -1,0 +1,16 @@
+<form action="{{url_for('edit')}}" method="POST">
+    <p>channel <input type = "number" value=16 min=0 max =16 name = "channeledit" /></p>
+    <p>remark <input type = "text" value="-"name = "remarkedit" /></p>
+    <p>class <input type = "number" value=0 max=1 min=0 step=1 name = "classedit" /></p>
+    <p>hotkey1<input type ="text" value="open" name = "hotkey1_text_edit" /></p>
+    <p>hotkey1<input type ="number" value=0 name = "hotkey1_angle_edit" max=180 min=0 /></p>
+    <p>hotkey2<input type ="text" value="close" name = "hotkey2_text_edit" /></p>
+    <p>hotkey2<input type ="number" value=90 name = "hotkey2_angle_edit" max=180 min=0 /></p>
+    <p><input type = "submit" value = "submit" /></p>
+ </form>
+<!--
+ <form action="{{url_for('delete')}}" method="POST">
+    <p>channel <input type = "number" value=16 min=0 max =16 name = "channeldelete" /></p>
+    <p><input type = "submit" value = "delete" /></p>
+ </form>
+-->

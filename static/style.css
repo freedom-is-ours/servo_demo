@@ -1,0 +1,37 @@
+#page {
+    color: rgb(0, 0, 0);
+    background: rgba(209, 209, 209, 0.438);
+    margin: 1em auto; 
+    width: 38em; 
+    border: 5px solid rgb(211, 211, 211);
+    padding: 0.5em; 
+    
+    }
+
+#discribe {
+    color: rgb(15, 174, 248);
+    font-size:30px;
+    font-family: 'Georgia', serif;
+    }
+
+input {
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Georgia', 
+    }
+
+button {
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: rgb(253, 254, 255);
+    font-family: 'Georgia',     
+    }    
+
+form {
+    display: inline-block;
+    }

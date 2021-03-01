@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Servo Control Webpage</title>
+    <link href="./../static/style.css" type="text/css" rel="stylesheet">
+    <script>
+      function disableTextSubmit(e) {
+        if (e.keyCode == 13) {
+          return false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id = page>
+      <div id = discribe>
+        <span style="position:relative;left:10px;">Servo Control</span>
+        <span style="position:relative;left:100px;">Iontrap Group of USTC</span>
+      </div>
+      <HR style="border:3 double #7cb9b9" color=#7cb9b9 SIZE=3>
+      <!--从这里开始做循环，判断等等-->
+      {% for channel in settings["id"] %}
+        <div class = servo>
+          <span class=channalnum>Channel {{channel}}:</span>&ensp;&ensp;
+          <span class = remark>{{settings["remark"][channel]}}</span>
+          {% if settings["class"][channel] == 0 %}
+            <div class = servo180> <!--180°类型舵机操作div-->
+              <p>
+                <form action="{{url_for('set_angle', channel=channel)}}"  method=post>
+                  Set Angle(°):&ensp;
+                  <input type="number"  name="angle" value="{{servo.angles[channel]}}" min="0" max="360"step="0.1">
+                  <input type="submit" value="update">&ensp;&ensp;&ensp;&ensp;
+                </form>
+                Hotkey : 
+                <form action="{{url_for('set_angle', channel=channel)}}"  method=post>
+                  <input type="hidden"  name="angle" value="{{settings['hotkey1'][channel][0]}}">
+                  <input type="submit" value='{{settings["hotkey1"][channel][1]}}'>&ensp;&ensp;&ensp;&ensp;
+                </form>
+                <form action="{{url_for('set_angle', channel=channel)}}"  method=post>
+                  <input type="hidden"  name="angle" value="{{settings['hotkey2'][channel][0]}}">
+                  <input type="submit" value='{{settings["hotkey2"][channel][1]}}'>&ensp;&ensp;&ensp;&ensp; 
+                </form>
+              </p>
+              <hr />
+            </div>
+          {% else %}
+            <div class = servo360><!--360°类型舵机操作div-->
+              <p class = stepless>
+                <form action="{{url_for('rotating', channel=channel)}}"  method=post>
+                  Set speed :
+                  Slow<input type="range" name = "speed" value="{{servo.speed[channel]}}" max="1" min="0" step="0.01">Fast &ensp;&ensp;&ensp;
+                  Start ：
+                  <button type="submit" name = "direction" value="-1"> 	&larr; </button>&ensp;
+                  <button type="submit" name = "direction" value="0"> 	Stop </button>&ensp;
+                  <button type="submit" name = "direction" value="1"> &rarr; </button>
+                </form>
+              </p>
+              <p class = stepping>
+                <form action="{{url_for('step', channel=channel)}}"  method=post>
+                  Stepsize :
+                  Small<input type="range" name="Stepsize" value="{{servo.stepsize[channel]}}" max="1" min="0" step="0.01">Large &ensp;&ensp;
+                  Multi ：
+                  <input type="number"  name="Multi" value="{{servo.multi[channel]}}" min="1" max="10" step="1" style="width: 50px;" onkeydown="return disableTextSubmit(event)">&ensp;&ensp;
+                  <button type="submit" name="step" value="CCW"> 	&#8678 </button>&ensp;
+                  <button type="submit" name="step" value="CW"> &#8680 </button>
+                </form>
+              </p>
+              <hr />
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <form action="{{url_for('editjson')}}">
+      <button type="submit">edit</button>
+      </form>
+    <!--结束-->
+    </div>
+  </body>
+</html>
