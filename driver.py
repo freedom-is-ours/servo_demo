@@ -10,6 +10,7 @@ class servo_switch(PCA9685):  #舵机直接设角度 （180度伺服）
         self.setPWMFreq(50)
 
     def set_angle(self,channel,angle = 0):
+        channel = 2*channel #只用了偶数通道
         if angle <= 180:
             pulse = angle/180*2000 + 500 #根据角度设定脉冲   
         else:
@@ -27,12 +28,13 @@ class servo_360(PCA9685): #360°电机
         self.setPWMFreq(50)
 
     def stepping(self, channel, direction = 1, stepsize = 1, stepnum = 1): #步进用法：方向±1，步长[0，1]，步数正整数
+        channel = 2*channel #
         pulse = 1500 - direction * stepsize * 500 
         timedelay = 0.02 * stepnum #延时
-        self.setServoPulse(1500)               #停止
+        self.setServoPulse(channel,1500)               #停止
         self.setServoPulse(channel,pulse) #转动
         time.sleep(timedelay)                  #延时
-        self.setServoPulse(1500)               #停止
+        self.setServoPulse(channel,1500)               #停止
 
     def stepless(self, channel,direction = 1, speed = 1): #无极调速电机用法:方向-1反转，1正转，0停止,速度0到1
         pulse = 1500 - direction * speed * 500

@@ -14,7 +14,7 @@ dev1 = servo_switch()
 dev2 = servo_360()
 
 try:
-    with open('static/webinterface_settings.json', 'r') as f:
+    with open('./static/webinterface_settings.json', 'r') as f:
         web_settings = json.load(f)
 except FileNotFoundError:
     web_settings = {
@@ -24,8 +24,7 @@ except FileNotFoundError:
         "hotkey1":[[0,"open"],[0,"-"],[90,"open"],[0,"-"],[0,"-"],[0,"-"],[0,"-"],[0,"-"]],
         "hotkey2":[[90,"close"],[90,"-"],[0,"close"],[90,"-"],[90,"-"],[90,"-"],[90,"-"],[90,"-"]]
     }
-    
-    with open('static/webinterface_settings.json', 'w') as f:
+    with open('./static/webinterface_settings.json', 'w') as f:
         json.dump(web_settings, f)
     
 state = servo_state(len=len(web_settings["id"]))
