@@ -70,3 +70,7 @@ dict = {"channal": num[i] ,  # <!--通道号，整型列表，默认0-7-->
 
 安装----github下载解压到目录/home/pi   终端打开该文件夹 
 >> sudo sh install.sh
+
+报错的可能：
+树莓派的I2C打开
+装python3
