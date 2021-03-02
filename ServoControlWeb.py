@@ -38,7 +38,7 @@ def index():
 @auto.doc("public")
 def set_angle(channel):
     if request.method == "POST":
-        temp_a = flask.request.form["angle"]
+        temp_a = int(flask.request.form["angle"])
     dev1.set_angle(channel, temp_a)
     state.angles[channel] = temp_a
     return flask.redirect((flask.url_for('index')))
